@@ -9,7 +9,7 @@ class Shape extends PIXI.Graphics {
     super();
     opts = JSUtils.combine(opts, shapePresets);
     this.fillColor = opts.color ?? opts.fill ?? opts.c;
-    this.fillAlpha = opts.alpha ?? opts.a ?? 1;
+    this.fillAlpha = opts.fillAlpha ?? 1;
 
     this._strokeColor = opts.strokeColor ?? opts.stroke;
     this.strokeAlpha = opts.strokeAlpha ?? 1;
@@ -304,6 +304,9 @@ class Utils {
 
     obj.sortableChildren = opts.sortChildren ?? opts.sort ?? true;
 
+    if (opts.child) {
+      obj.add(child);
+    }
     if (opts.children) {
       for (let child of opts.children) {
         obj.add(child);
