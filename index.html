@@ -9,25 +9,24 @@
   <body style="overflow: hidden; background-color: black">
     <script type="module">
       import PixiScaffold from "https://flo-bit.github.io/pixi-scaffold/pixi-scaffold.js";
-      import * as MANIAC from "./pixi-utils.js";
 
       class Game {
         assets = {
           warning: "./assets/warning.png",
         };
         setup(p) {
-          window.PS.add = (child) => {
-            let c = MANIAC.Utils.process(child);
-            if (c != undefined) PS.addChild(c);
-            return c;
-          };
-
-          this.rect = PS.add({
+          PS.add({
             shape: "rect",
             color: 0x0000aa,
             alpha: 0.5,
             width: PS.w,
             height: PS.h,
+          });
+
+          PS.add({
+            text: "Hello world!",
+            fontSize: 80,
+            color: 0xff00ff,
           });
 
           this.circle = PS.add({

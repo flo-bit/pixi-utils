@@ -8,7 +8,6 @@ class Shape extends PIXI.Graphics {
   constructor(opts) {
     super();
     opts = JSUtils.combine(opts, shapePresets);
-    this.opts = opts;
     this.fillColor = opts.color ?? opts.fill ?? opts.c;
     this.fillAlpha = opts.alpha ?? opts.a ?? 1;
 
@@ -21,17 +20,12 @@ class Shape extends PIXI.Graphics {
       opts.height ?? opts.h ?? opts.size ?? opts.s ?? 100
     );
 
-    this.x = opts.x ?? 0;
-    this.y = opts.y ?? 0;
-
     this.shape = opts.shape ?? opts.type ?? "rect";
 
     this._cornerRadius = opts.cornerRadius ?? opts.corner ?? 0;
 
     this.a = opts.a;
     this.b = opts.b;
-
-    this.sortableChildren = opts.sortChildren ?? opts.sort ?? true;
 
     if (opts.text) {
       let textOpts = JSUtils.merge(
@@ -44,17 +38,7 @@ class Shape extends PIXI.Graphics {
       this.addChild(this._text);
     }
 
-    this.name = opts.name;
-    this.interactive = opts.interactive ?? false;
-
-    this.zIndex = opts.zIndex ?? 0;
-
-    if (opts.children) {
-      for (let c of opts.children) {
-        this.add(c);
-      }
-    }
-
+    Utils.applySettings(this, opts);
     this.redraw();
   }
 
@@ -297,10 +281,12 @@ class Utils {
 
     obj.rotation = opts.rotation ?? 0;
 
-    obj.anchor.set(
-      opts.anchorX ?? opts.anchor ?? 0.5,
-      opts.anchorY ?? opts.anchor ?? 0.5
-    );
+    if (obj.anchor !== undefined) {
+      obj.anchor.set(
+        opts.anchorX ?? opts.anchor ?? 0.5,
+        opts.anchorY ?? opts.anchor ?? 0.5
+      );
+    }
 
     obj.tint = opts.tint ?? 0xffffff;
     obj.scale.set(
