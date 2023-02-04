@@ -313,6 +313,7 @@ class Utils {
       }
     }
     obj.opts = opts;
+    return obj;
   }
 
   static addChild(parent, child) {
@@ -320,13 +321,14 @@ class Utils {
     if (child == undefined) return;
 
     if (!Array.isArray(child)) {
-      return parent.addChild(child);
+      parent.addChild(child);
+      return child;
     }
 
     for (let c of child) {
       parent.addChild(c);
     }
-    return;
+    return child;
   }
 
   static process(child) {
