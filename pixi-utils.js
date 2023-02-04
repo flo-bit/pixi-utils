@@ -13,7 +13,7 @@ class Shape extends PIXI.Graphics {
 
     this._strokeColor = opts.strokeColor ?? opts.stroke;
     this.strokeAlpha = opts.strokeAlpha ?? 1;
-    this.strokeWeight = opts.strokeWeigth ?? 1;
+    this.strokeWeight = opts.strokeWeight ?? 1;
 
     this.size = new Vector(
       opts.width ?? opts.w ?? opts.size ?? opts.s ?? 100,
@@ -150,7 +150,7 @@ class Shape extends PIXI.Graphics {
     if (this.fillColor != undefined)
       this.beginFill(this.fillColor, this.fillAlpha);
 
-    if (this._strokeColor)
+    if (this._strokeColor != undefined)
       this.lineStyle(this.strokeWeight, this._strokeColor, this.strokeAlpha);
 
     if (this.shape == "rect") {
