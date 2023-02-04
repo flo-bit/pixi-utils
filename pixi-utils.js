@@ -69,7 +69,7 @@ class Shape extends PIXI.Graphics {
   }
 
   add(c) {
-    Utils.addChild(this, c);
+    return Utils.addChild(this, c);
   }
 
   get cornerRadius() {
@@ -194,7 +194,7 @@ class Sprite extends PIXI.Sprite {
   }
 
   add(c) {
-    Utils.addChild(this, c);
+    return Utils.addChild(this, c);
   }
 }
 
@@ -209,7 +209,7 @@ class Container extends PIXI.Container {
   }
 
   add(c) {
-    Utils.addChild(this, c);
+    return Utils.addChild(this, c);
   }
 }
 
@@ -224,7 +224,7 @@ class Graphics extends PIXI.Graphics {
   }
 
   add(c) {
-    Utils.addChild(this, c);
+    return Utils.addChild(this, c);
   }
 }
 
