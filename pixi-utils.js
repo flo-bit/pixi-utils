@@ -233,22 +233,20 @@ const textPresets = {};
 class Text extends PIXI.Text {
   constructor(opts) {
     opts = JSUtils.combine(opts, textPresets);
-    super(
-      opts.text,
-      opts.style ?? {
-        fontFamily:
-          opts.fontFamily ?? opts.textFamily ?? opts.family ?? "Arial",
-        fontSize: opts.fontSize ?? opts.textSize ?? opts.size ?? 24,
-        fill:
-          opts.fontColor ??
-          opts.textColor ??
-          opts.color ??
-          opts.fill ??
-          opts.c ??
-          0xffffff,
-        align: opts.fontAlign ?? opts.textAlign ?? opts.align ?? "center",
-      }
-    );
+    let style = JSUtils.merge(opts.style, opts);
+    super(opts.text, {
+      fontFamily:
+        style.fontFamily ?? style.textFamily ?? style.family ?? "Arial",
+      fontSize: style.fontSize ?? style.textSize ?? style.size ?? 24,
+      fill:
+        style.fontColor ??
+        style.textColor ??
+        style.color ??
+        style.fill ??
+        style.c ??
+        0xffffff,
+      align: style.fontAlign ?? style.textAlign ?? style.align ?? "center",
+    });
 
     Utils.applySettings(this, opts);
   }
