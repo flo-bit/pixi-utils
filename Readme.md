@@ -1,5 +1,5 @@
-# PIXI utils
+### moved
 
-```js
-import * as PixiUtils from "https://flo-bit.github.io/pixi-utils/pixi-utils.js";
-```
+moved into pixi-scaffold.
+
+pixi-utils will be archived.
